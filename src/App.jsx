@@ -4,12 +4,16 @@ import "regenerator-runtime/runtime";
 import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition";
+import useClipboard from "react-use-clipboard";
 
 function App() {
   const startListening = () =>
     SpeechRecognition.startListening({ continuous: true, language: "en-IN" });
+
   const { transcript, browserSupportsSpeechRecognition } =
     useSpeechRecognition();
+  const [textToCopy, setTextToCopy] = useState();
+  const [isCopied, setCopied] = useClipboard(textToCopy);
 
   if (!browserSupportsSpeechRecognition) {
     return null;
@@ -23,11 +27,13 @@ function App() {
           A react hook that converts speech from the microphone and make sit
           available to our React Components
         </p>
-        <div className="main-content">
+        <div className="main-content" onClick={() => setTextToCopy(transcript)}>
           <p>{transcript}</p>
         </div>
         <div className="btn-style">
-          <button>Copy to clipboard</button>
+          <button onClick={setCopied}>
+            {isCopied ? "Copied 👍" : "Copy to clipboard"}
+          </button>
           <button onClick={startListening}>Start Listening</button>
           <button onClick={SpeechRecognition.stopListening}>
             Stop Listening
