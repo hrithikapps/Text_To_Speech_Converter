@@ -5,3 +5,5 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
 })
+
+entry: ["regenerator-runtime/runtime.js", "<index.html>"]

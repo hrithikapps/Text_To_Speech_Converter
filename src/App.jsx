@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./App.css";
+import "regenerator-runtime/runtime";
 import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition";
