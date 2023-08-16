@@ -7,7 +7,7 @@ import SpeechRecognition, {
 
 function App() {
   const startListening = () =>
-    SpeechRecognition.startListening({ continuous: true });
+    SpeechRecognition.startListening({ continuous: true, language: "en-IN" });
   const { transcript, browserSupportsSpeechRecognition } =
     useSpeechRecognition();
 
